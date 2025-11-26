@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pongas_ativ/pages/home_page.dart';
+import 'package:pongas_ativ/pages/main_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const HomePage(),
+      home: const MainPage(),
     );
   }
 }

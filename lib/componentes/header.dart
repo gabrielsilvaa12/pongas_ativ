@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 const Color _primaryBlue = Color(0xFF0D47A1);
 
-class header extends StatelessWidget implements PreferredSizeWidget {
-  const header({super.key});
+class Header extends StatelessWidget implements PreferredSizeWidget {
+  const Header({super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(120.0);
@@ -26,7 +26,9 @@ class header extends StatelessWidget implements PreferredSizeWidget {
           ),
         ],
       ),
-      child: Center(child: Image.asset('assets/Pongas.png', height: 60)),
+      child: Center(
+        child: Image.asset('assets/images/Pongas.png', height: 120),
+      ),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:pongas_ativ/pages/detail_page.dart';
-import 'package:pongas_ativ/pages/home_page.dart';
+import 'package:pongas_ativ/pages/main_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +27,6 @@ class PongasApp extends StatelessWidget {
       title: 'Pongas App',
       theme: ThemeData(
         brightness: Brightness.light,
-
         primaryColor: primaryBlue,
         scaffoldBackgroundColor: backgroundLight,
         colorScheme: const ColorScheme.light(
@@ -39,6 +37,7 @@ class PongasApp extends StatelessWidget {
           onBackground: Colors.black87,
         ),
 
+        // ... (Restante do seu ThemeData)
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: accentRed,
@@ -49,11 +48,9 @@ class PongasApp extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 15.0),
           ),
         ),
-
         textTheme: const TextTheme(
           bodyMedium: TextStyle(color: Colors.black87),
         ),
-
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: Colors.white,
@@ -67,16 +64,11 @@ class PongasApp extends StatelessWidget {
           ),
           labelStyle: TextStyle(color: Colors.grey[600]),
         ),
-
         useMaterial3: true,
       ),
 
-      initialRoute: '/login',
-      routes: {
-        '/login': (context) => const LoginPage(),
-        '/home': (context) => const HomePage(),
-        '/detail': (context) => const DetailPage(), // ⬅️ NOVA ROTA
-      },
+      home: const MainPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
