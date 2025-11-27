@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "144815053048",
+    "project_id": "pongasativ",
+    "storage_bucket": "pongasativ.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144815053048:android:cff23a7a9e1c7bd4d8830d",
+        "android_client_info": {
+          "package_name": "com.example.pongas_ativ"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5iqFGY6Zk0ahtSKtkNbfW8ISdbPkL4UE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

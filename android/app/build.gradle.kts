@@ -42,3 +42,38 @@ android {
 flutter {
     source = "../.."
 }
+
+plugins {
+
+  id("com.android.application")
+
+  // Add the Google services Gradle plugin
+
+  id("com.google.gms.google-services")
+
+  ...
+
+  }
+
+
+dependencies {
+
+  implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+
+    // ✅ ADICIONE ESSAS DUAS LINHAS:
+    // 1. Dependência específica para o Firebase Auth
+    implementation("com.google.firebase:firebase-auth-ktx")
+    
+    // 2. Dependência específica para o Google Play Services Auth (Obrigatório para google_sign_in)
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+
+  implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+
+
+  // TODO: Add the dependencies for Firebase products you want to use
+
+  // When using the BoM, don't specify versions in Firebase dependencies
+
+  // https://firebase.google.com/docs/android/setup#available-libraries
+
+}

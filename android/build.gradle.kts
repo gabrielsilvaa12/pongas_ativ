@@ -1,24 +1,35 @@
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "com.google.gms.google-services"
+}
+
+android {
+    namespace "com.example.pongas_ativ"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.pongas_ativ"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
     }
 }
 
-val newBuildDir: Directory =
-    rootProject.layout.buildDirectory
-        .dir("../../build")
-        .get()
-rootProject.layout.buildDirectory.value(newBuildDir)
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:33.1.1')
+    implementation 'com.google.firebase:firebase-auth'
 
-subprojects {
-    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
-}
-subprojects {
-    project.evaluationDependsOn(":app")
-}
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
 
-tasks.register<Delete>("clean") {
-    delete(rootProject.layout.buildDirectory)
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10"
 }
