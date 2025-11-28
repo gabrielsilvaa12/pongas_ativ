@@ -1,5 +1,3 @@
-// lib/pages/ranking_tab_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:pongas_ativ/models/ranking_item.dart';
 import 'package:pongas_ativ/services/api_service.dart';
@@ -20,7 +18,8 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   void initState() {
     super.initState();
-    _rankingFuture = ApiService().fetchRanking();
+    // CORREÇÃO: Atualizado para fetchWorldRanking()
+    _rankingFuture = ApiService().fetchWorldRanking();
   }
 
   @override
@@ -31,7 +30,7 @@ class _HistoryPageState extends State<HistoryPage> {
         const Padding(
           padding: EdgeInsets.fromLTRB(16, 20, 16, 8),
           child: Text(
-            'Ranking Global',
+            'Ranking Mundial (ITTF)', // Atualizei o título também
             style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.bold,
@@ -50,7 +49,13 @@ class _HistoryPageState extends State<HistoryPage> {
                 );
               } else if (snapshot.hasError) {
                 return Center(
-                  child: Text('Erro ao carregar o ranking: ${snapshot.error}'),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Erro ao carregar o ranking: ${snapshot.error}',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 );
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                 return const Center(
@@ -109,16 +114,22 @@ class _HistoryPageState extends State<HistoryPage> {
             CircleAvatar(
               radius: 20,
               backgroundColor: _primaryBlue,
-              backgroundImage: NetworkImage(item.imageUrl), // Usa a URL mockada
+              // Adicionei um tratamento de erro para imagens quebradas
+              backgroundImage: NetworkImage(item.imageUrl),
+              onBackgroundImageError: (_, __) {},
+              child: const Icon(Icons.person, size: 20, color: Colors.white),
             ),
             const SizedBox(width: 15),
             // Nome do Jogador
-            Text(
-              item.name,
-              style: TextStyle(
-                fontWeight: isTopThree ? FontWeight.w900 : FontWeight.w600,
-                fontSize: 18,
-                color: Colors.black87,
+            Expanded(
+              child: Text(
+                item.name,
+                style: TextStyle(
+                  fontWeight: isTopThree ? FontWeight.w900 : FontWeight.w600,
+                  fontSize: 16,
+                  color: Colors.black87,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
@@ -131,14 +142,14 @@ class _HistoryPageState extends State<HistoryPage> {
             Text(
               '${item.rating}',
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: _primaryBlue,
               ),
             ),
             const Text(
               'PTS',
-              style: TextStyle(fontSize: 12, color: Colors.grey),
+              style: TextStyle(fontSize: 10, color: Colors.grey),
             ),
           ],
         ),
